@@ -2,8 +2,8 @@ from django.db import models
 
 class Object(models.Model):
     object_name = models.CharField(max_length=200)
-    object_ra = models.CharField(max_length=12)
-    object_dec = models.CharField(max_length=10)
+    object_RA = models.CharField(max_length=12)
+    object_DEC = models.CharField(max_length=10)
 
 class Observation(models.Model):
     campaign_id = models.IntegerField()
