@@ -84,7 +84,6 @@ target/
 *.pyc
 __pycache__/
 local_settings.py
-hops/migrations/
 
 .env
 db.sqlite3
