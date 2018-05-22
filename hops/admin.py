@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Object, Observation
+from .models import Frame,Target
 
-# Register your models here
-admin.site.register(Object)
-admin.site.register(Observation)
+admin.site.register(Frame)
+admin.site.register(Target)
