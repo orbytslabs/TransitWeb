@@ -1,0 +1,28 @@
+{% extends "hops/base.html" %}
+{% load static %}
+
+{% block title %}Alignment{% endblock title %}
+
+{% block pageheader %}HOPS: Alignment{% endblock pageheader %}
+
+{% block content %}
+    <div class="content container" style="padding: 0 0 20px 0">
+        {% if selected_dataset %}
+            <h3>You are analysing {{ selected_dataset.name }}</h3>
+            {% if image_path %}
+            <img id="finderImage" src="{{ image_path }}" alt="Finder image"/>
+            <script type="text/javascript">
+                <!--
+                var myImg = document.getElementById("finderImage");
+                myImg.onmousedown = GetCoordinates;
+                //-->
+            </script>
+
+            <p>X:<span id="x"></span></p>
+            <p>Y:<span id="y"></span></p>
+            {% endif %}
+        {% else %}
+            <h3>No data was selected!</h3>>
+        {% endif %}
+    </div>
+{% endblock content %}

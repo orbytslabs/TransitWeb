@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Target(models.Model):
 
     def __str__(self):
@@ -13,10 +14,10 @@ class Target(models.Model):
 class Frame(models.Model):
 
     def __str__(self):
-        return str(self.observation_filename)
+        return str(self.observation_image.name.strip('media'))
 
     campaign_id = models.IntegerField()
-    observation_filename = models.FileField()
+    observation_image = models.ImageField(upload_to='media')
     observation_object = models.ForeignKey(Target, on_delete=models.CASCADE)
     observation_date = models.DateField()
     observation_start_time = models.TimeField()
@@ -46,3 +47,17 @@ class Frame(models.Model):
         choices=OBSERVATION_FILTERS,
         default='I',
     ) 
+
+
+class Dataset(models.Model):
+
+    def __str__(self):
+        return str(self.name)
+
+    name = models.TextField(default='placeholder')
+    data = models.ManyToManyField(Frame)
+
+# class Photometry(models.Model):
+
+#     object_name = models.TextField()
+#     results = models.TextField()

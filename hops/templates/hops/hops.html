@@ -1,1 +1,27 @@
-{% extends 'hops/base.html' %}
+{% extends "hops/base.html" %}
+
+{% block title %}HOPS{% endblock title %}
+
+{% block pageheader %}Holomon Astronomical Station Photometry Software{% endblock pageheader %}
+
+{% block content %}
+    <div class="content container" style="padding: 0 0 20px 0">
+        {% if datasets %}
+            <h2>Welcome to the ORBYTS online photometry tool.</h2>
+            <p>Please select the dataset you wish to analyse.</p>
+            <form action="{% url 'source-selection' %}" method="POST">
+                {% csrf_token %}
+                <select id="id_selected" name="dataset">
+                    <option disabled selected> -- select a dataset -- </option>
+                    {% for data in datasets %}
+                        <option value={{ data.id }}>{{ data.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Select">
+            </form>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+
+{% endblock content %}
