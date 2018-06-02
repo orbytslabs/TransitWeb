@@ -7,8 +7,6 @@ function FindPosition(oElement)
       posX += oElement.offsetLeft;
       posY += oElement.offsetTop;
     }
-      console.log(posX);
-      console.log(posY);
       return [ posX, posY ];
     }
     else
