@@ -1,9 +1,9 @@
 $(document).ready(function (e) {
     $('#finderImage').click(function (e) {
         var posX = $(this).offset().left,
-            posY = $(this).offset().top;
+            posY =  $(this).height() + $(this).offset().top;
         var sourcePosX = e.pageX - posX,
-            sourcePosY = e.pageY - posY;
+            sourcePosY = posY - e.pageY;
         alert(sourcePosX + ' , ' + sourcePosY);
 
         $.ajax({
