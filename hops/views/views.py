@@ -1,11 +1,12 @@
 from astropy.io import fits
 
 from django.conf import settings
-from django.template import loader
 from django.http import HttpResponse
+from django.template import loader
+from django.shortcuts import render
 
 import matplotlib.pyplot as plt
-from ..models import Dataset,Frame
+from ..models import Dataset,Frame,PhotometrySource,Target
 
 import os
 
@@ -16,6 +17,7 @@ def index(request):
         'datasets': datasets,
     }
     return HttpResponse(template.render(context, request))
+
 
 def sourceSelection(request):
     if request.method == 'POST':
@@ -38,3 +40,15 @@ def sourceSelection(request):
         'image_path': '/static/{}.png'.format(fits_img_path.strip('/media/.fit'))
     }
     return HttpResponse(template.render(context, request))
+
+
+def createPhotometrySource(request):
+    if request.method == 'POST':
+        data = PhotometrySource(
+            observation_target = Target.objects.get(object_name='Qatar-1b'),
+            sourcePosX = float(request.POST.get('sourcePosX')),
+            sourcePosY = float(request.POST.get('sourcePosY')),
+            sourceCount = 1200
+        )
+        data.save()
+    return HttpResponse(status=204)

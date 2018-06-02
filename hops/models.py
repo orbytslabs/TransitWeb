@@ -57,7 +57,13 @@ class Dataset(models.Model):
     name = models.TextField(default='placeholder')
     data = models.ManyToManyField(Frame)
 
-# class Photometry(models.Model):
 
-#     object_name = models.TextField()
-#     results = models.TextField()
+class PhotometrySource(models.Model):
+
+    def __str__(self):
+        return str(self.observation_target)
+
+    observation_target = models.ForeignKey(Target, on_delete=models.CASCADE)
+    sourcePosX = models.FloatField(default=0)
+    sourcePosY = models.FloatField(default=0)
+    sourceCount = models.IntegerField(default=0)
