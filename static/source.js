@@ -4,7 +4,6 @@ $(document).ready(function (e) {
             posY =  $(this).height() + $(this).offset().top;
         var sourcePosX = e.pageX - posX,
             sourcePosY = posY - e.pageY;
-        alert(sourcePosX + ' , ' + sourcePosY);
 
         $.ajax({
           type: "POST",
@@ -22,6 +21,11 @@ $(document).ready(function (e) {
 });
 
 $(document).ready(function (e) {
+
+    $('input:checkbox').click(function() {
+        $('input:checkbox').not(this).prop('checked', false);
+    });
+
     var canvas = document.getElementById("finderImageCanvas");
     var context = canvas.getContext('2d');
 
@@ -38,7 +42,13 @@ $(document).ready(function (e) {
         posx = pos.x;
         posy = pos.y;
         context.fillStyle = "transparent";
-        context.strokeStyle = "#000000";
+        if ($('#target').is(":checked"))
+        {
+          context.strokeStyle = "#000000"; 
+        }
+        else if ($('#comparison').is(":checked")) {
+          context.strokeStyle = "#FF0000";
+        }
         context.lineWidth = 2;
         context.beginPath();
         context.arc(posx, posy, 8, 0, 2*Math.PI);

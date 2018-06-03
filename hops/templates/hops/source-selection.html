@@ -6,20 +6,30 @@
 {% block pageheader %}HOPS: Alignment{% endblock pageheader %}
 
 {% block content %}
-    <div class="content container" style="padding: 0 0 20px 0">
+    <div class="content container" style="padding: 0 0 20px 0;">
         {% if selected_dataset %}
             <h3>You are analysing {{ selected_dataset.name }}</h3>
-            {% csrf_token %}
-            {% if image_path %}
-                <!-- <img id="finderImage" src="{{ image_path }}" alt="Finder image" onclick="draw(event)"/> -->
-                <canvas 
-                    id="finderImageCanvas" 
-                    src="{{ image_path }}" 
-                    style="background: url({{ image_path  }})" 
-                    onclick="draw(event)" 
-                    width="600" 
-                    height="600"
-                ></canvas>
+            <div class="content-finder-image" style="float:left; display: inline-block;">
+                {% csrf_token %}
+                {% if image_path %}
+                    <!-- <img id="finderImage" src="{{ image_path }}" alt="Finder image" onclick="draw(event)"/> -->
+                    <canvas 
+                        id="finderImageCanvas" 
+                        src="{{ image_path }}" 
+                        style="background: url({{ image_path  }})" 
+                        onclick="draw(event)" 
+                        width="600" 
+                        height="600"
+                    ></canvas>
+            </div>
+
+            <div class="content-source-type">
+                <input type="checkbox" id="target" name="target" value="0">Target<br>
+                <input type="checkbox" id="comparison" name="comp-1" value="1">Comparison 1<br>
+                <input type="checkbox" id="comparison" name="comp-2" value="1">Comparison 2<br>
+                <input type="checkbox" id="comparison" name="comp-3" value="1">Comparison 3<br>
+                <input type="checkbox" id="comparison" name="comp-4" value="1">Comparison 4<br>
+            </div>
             {% endif %}
         {% else %}
             <h3>No data was selected!</h3>
