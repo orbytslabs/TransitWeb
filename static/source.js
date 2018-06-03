@@ -1,5 +1,5 @@
 $(document).ready(function (e) {
-    $('#finderImage').click(function (e) {
+    $('#finderImageCanvas').click(function (e) {
         var posX = $(this).offset().left,
             posY =  $(this).height() + $(this).offset().top;
         var sourcePosX = e.pageX - posX,
@@ -20,7 +20,7 @@ $(document).ready(function (e) {
     });
 });
 
-$(document).ready(function (e) {
+$('#content-finder-image').ready(function (e) {
 
     $('input:checkbox').click(function() {
         $('input:checkbox').not(this).prop('checked', false);
