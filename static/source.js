@@ -1,17 +1,25 @@
-$(document).ready(function (e) {
+$('#content-source-type').ready(function (e) {
     $('#finderImageCanvas').click(function (e) {
         var posX = $(this).offset().left,
             posY =  $(this).height() + $(this).offset().top;
         var sourcePosX = e.pageX - posX,
             sourcePosY = posY - e.pageY;
-
+        if ($('#target').is(":checked"))
+        {
+          var sourceType = $('#target').val();
+        }
+        else {
+            var sourceType = $('#comparison').val();
+        }
+        // console.log(sourceType)
         $.ajax({
           type: "POST",
           url: "/source-selection/create-photometry-source",
           data: { 
             "sourcePosX": sourcePosX, 
             "sourcePosY": sourcePosY,
-            csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val() 
+            "sourceType": sourceType,
+            csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(), 
           },
           success: function(response){
             console.log('Success');
@@ -32,9 +40,9 @@ $('#content-finder-image').ready(function (e) {
     function createImageOnCanvas(imageId) {
         canvas.style.display = "block";
         document.getElementById("images").style.overflowY = "hidden";
-        var img = new Image(300, 300);
+        var img = new Image(640, 480);
         img.src = document.getElementById(imageId).src;
-        context.drawImage(img, (0), (0)); //onload....
+        context.drawImage(img, (0), (0));
     }
 
     function draw(e) {
