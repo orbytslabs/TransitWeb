@@ -9,7 +9,7 @@
     <div class="content container">
         {% if selected_dataset %}
             <h3 style="padding: 0 0 20px 0">You are analysing {{ selected_dataset.name }}</h3>
-            <div class="content-finder-image" style="float:left; padding: 0 20px;">
+            <div class="content-finder-image" style="float:left; padding: 0 20px 20px 0px;">
                 {% csrf_token %}
                 {% if image_path %}
                     <!-- <img id="finderImage" src="{{ image_path }}" alt="Finder image" onclick="draw(event)"/> -->
@@ -17,8 +17,8 @@
                         id="finderImageCanvas" 
                         style="background: url({{ image_path  }})" 
                         onclick="draw(event)" 
-                        width="640" 
-                        height="480"
+                        width="{{ selected_dataset.image_width }}" 
+                        height="{{ selected_dataset.image_height }}"
                     ></canvas>
             </div>
 
