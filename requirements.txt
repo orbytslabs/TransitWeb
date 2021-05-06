@@ -48,7 +48,7 @@ exodata==2.1.7
 fastcache==1.0.2
 filelock==2.0.12
 Flask==0.12.2
-Flask-Cors==3.0.3
+Flask-Cors==3.0.9
 fortran-language-server==0.3.7
 future==0.16.0
 gevent==1.2.2
